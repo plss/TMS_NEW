@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/activity_vertical_margin">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tvVersionDetail">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="TMS"
+            android:textColor="#FFF"
+            android:textIsSelectable="false"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvVersionDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pbVersion"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:text="Checking version"
+        android:textColor="#FFF"
+        android:textSize="14sp" />
+
+    <ProgressBar
+        android:id="@+id/pbVersion"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentBottom="true"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="75"
+        android:progressDrawable="@drawable/progress_bar"
+        android:visibility="invisible" />
+
+</RelativeLayout>

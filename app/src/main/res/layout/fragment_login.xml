@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="72dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_round"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:windowSoftInputMode="stateHidden">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/etTruckId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_round_shadow"
+                    android:hint="เบอร์รถ"
+                    android:padding="8dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <EditText
+                    android:id="@+id/etEmpId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_round_shadow"
+                    android:hint="รหัสพนักงาน"
+                    android:inputType="numberDecimal"
+                    android:padding="8dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <com.hkm.ui.processbutton.iml.ActionProcessButton
+                android:id="@+id/btnSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="เข้าสู่ระบบ"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                custom:pb_colorComplete="@color/green_complete"
+                custom:pb_colorNormal="@color/blue_normal"
+                custom:pb_colorPressed="@color/blue_pressed"
+                custom:pb_colorProgress="@color/purple_progress"
+                custom:pb_cornerRadius="5dp"
+                custom:pb_textComplete="สำเร็จ"
+                custom:pb_textError="ผิดพลาด"
+                custom:pb_textProgress="รอสักครู่" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

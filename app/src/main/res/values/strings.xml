@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">TMS</string>
+    <string name="open_drawer">Open Menu</string>
+    <string name="close_drawer">Close Menu</string>
+    <string name="refresh">Refresh</string>
+
+    <string name="menu.plan">ยืนยันเปิดงาน</string>
+    <string name="menu.work">คำสั่งวิ่งงาน</string>
+    <string name="menu.fuel">เติมเชื้อเพลิง</string>
+    <string name="menu.doc.work">ใบงานขนส่ง</string>
+    <string name="menu.doc.fuel">ใบเบิกเชื้อเพลิง</string>
+    <string name="menu.cash">เงินค่าเที่ยว</string>
+    <string name="menu.slip">สลิปเงินเดือน</string>
+    <string name="menu.check">ตรวจสภาพ / รายงานตัว</string>
+    <string name="menu.sick">การลา</string>
+    <string name="menu.cam">ถ่ายรูป</string>
+    <string name="menu.scanqr">สแกนเอกสาร</string>
+    <string name="menu.reserve.weight">จองคิวห้องชั่ง</string>
+    <string name="menu.hrms">การลา</string>
+    <string name="menu.logout">ออกจากระบบ</string>
+
+
+    <string-array name="work_image_type">
+        <item>สถานที่รับ/ส่ง</item>
+        <item>สินค้า</item>
+        <item>เอกสาร</item>
+        <item>ระหว่างเดินทาง</item>
+        <item>ห้องชั่ง</item>
+        <item>ล้างรถ</item>
+        <item>แจ้งปัญหา/อุบัติเหตุ</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
+    <string-array name="fuel_image_type">
+        <item>สถานีเชื้อเพลิง</item>
+        <item>เอกสาร/ใบเสร็จ</item>
+        <item>รถ</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
+    <string-array name="sign_image_type">
+        <item>ลงชื่อรับสินค้า</item>
+        <item>ลงชื่อส่งสินค้า</item>
+    </string-array>
+
+    <string-array name="mtntruck_image_type">
+        <item>รถ</item>
+        <item>อุปกรณ์ประจำรถ</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
+    <string-array name="mtndriver_image_type">
+        <item>พนักงาน</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
+    <string-array name="reqwork_image_type">
+        <item>พนักงาน</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/drawer_plan"
+            android:checked="true"
+            android:icon="@drawable/plan"
+            android:title="ยืนยันเปิดงาน" />
+
+        <item
+            android:id="@+id/drawer_work"
+            android:icon="@drawable/truck_icon"
+            android:title="คำสั่งวิ่งงาน" />
+
+        <item
+            android:id="@+id/drawer_fuel"
+            android:icon="@drawable/fuel"
+            android:title="เติมเชื้อเพลิง" />
+
+        <item
+            android:id="@+id/drawer_cash"
+            android:icon="@drawable/cash"
+            android:title="เงินค่าเที่ยว" />
+
+        <item
+            android:id="@+id/drawer_slip"
+            android:icon="@drawable/cash"
+            android:title="สลิปเงินเดือน" />
+
+        <item
+            android:id="@+id/drawer_check"
+            android:icon="@drawable/check"
+            android:title="ตรวจสภาพ / รายงานตัว" />
+
+        <item
+            android:id="@+id/drawer_cam"
+            android:icon="@drawable/camera"
+            android:title="ถ่ายรูป" />
+
+        <item
+            android:id="@+id/drawer_scanqr"
+            android:icon="@drawable/qrcode"
+            android:title="สแกนเอกสาร" />
+
+        <item
+            android:id="@+id/drawer_weight"
+            android:icon="@drawable/scale"
+            android:title="จองคิวห้องชั่ง" />
+
+        <item
+            android:id="@+id/drawer_hrms"
+            android:icon="@drawable/calendar_time"
+            android:title="การลา" />
+
+        <item
+            android:id="@+id/drawer_logout"
+            android:icon="@drawable/logout"
+            android:title="ออกจากระบบ" />
+
+    </group>
+
+
+</menu>

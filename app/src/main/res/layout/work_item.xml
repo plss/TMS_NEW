@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:orientation="vertical"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="@dimen/cardview_default_elevation">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/cardStatusBar"
+            android:layout_width="5dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/card_statusbar_red"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/viewWorkListItemDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:paddingBottom="4dp"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp">
+
+                <TextView
+                    android:id="@+id/tvCardItemNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="เส้นทาง No. 1"
+                    android:textColor="#000"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ต้นทางรับ"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/abc_text_size_menu_material" />
+
+                <TextView
+                    android:id="@+id/tvCardSource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="New Text"
+                    android:textColor="#000"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ปลายทางส่ง"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/abc_text_size_menu_material" />
+
+                <TextView
+                    android:id="@+id/tvCardDest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="New Text"
+                    android:textColor="#000"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="สินค้า"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/abc_text_size_menu_material" />
+
+                <TextView
+                    android:id="@+id/tvCardProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="New Text"
+                    android:textColor="#000"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="รายละเอียด"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/abc_text_size_menu_material" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#1F000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/btnSignature"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/signicn" />
+
+                        <TextView
+                            android:id="@+id/tvBtnSign"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:lines="1"
+                            android:text="ลงชื่อยืนยัน"
+                            android:textAlignment="center"
+                            android:textColor="#000"
+                            android:textSize="@dimen/abc_text_size_menu_material" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="#1F000000" />
+
+                <RelativeLayout
+                    android:id="@+id/btnCardCamera"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/camera" />
+
+                        <TextView
+                            android:id="@+id/tvBtnCardCamera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:text="ถ่ายรูปยืนยัน"
+                            android:textAlignment="center"
+                            android:textColor="#000"
+                            android:textSize="@dimen/abc_text_size_menu_material" />
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
