@@ -3,6 +3,7 @@ package mibh.mis.tmsland.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import mibh.mis.tmsland.R;
@@ -37,6 +38,12 @@ public class ImageGalleryActivity extends AppCompatActivity {
                 finish();
                 break;
         }
+        return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.grid_img_menu, menu);
         return true;
     }
 }

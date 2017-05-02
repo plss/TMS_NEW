@@ -1,12 +1,17 @@
 package mibh.mis.tmsland.manager;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import mibh.mis.tmsland.realm.HashtagMain;
+import mibh.mis.tmsland.realm.HashtagValue;
 import mibh.mis.tmsland.realm.ImageTms;
+import mibh.mis.tmsland.realm.ListMain;
+import mibh.mis.tmsland.utils.Utils;
 
 public class RealmManager {
 
@@ -31,9 +36,12 @@ public class RealmManager {
                             String docItem,
                             String lat,
                             String lng,
-                            String dateImg,
-                            String statUpd,
-                            String commentImg) {
+                            String commentImg,
+                            String truckId,
+                            String driverId,
+                            String firstname,
+                            String lastname,
+                            String locationName) {
 
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
@@ -45,9 +53,14 @@ public class RealmManager {
         imageTms.setDocItem(docItem);
         imageTms.setLat(lat);
         imageTms.setLng(lng);
-        imageTms.setDateImg(dateImg);
-        imageTms.setStatUpd(statUpd);
+        imageTms.setDateImg(Utils.getInstance().getCurrentDateTime());
+        imageTms.setStatUpd("INACTIVE");
         imageTms.setCommentImg(commentImg);
+        imageTms.setTruckId(truckId);
+        imageTms.setDriverId(driverId);
+        imageTms.setFirstname(firstname);
+        imageTms.setLastname(lastname);
+        imageTms.setLocationName(locationName);
         realm.commitTransaction();
         realm.close();
 
@@ -165,6 +178,7 @@ public class RealmManager {
 
     public void updateActiveByFilename(String filename) {
         Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
         ImageTms result = realm.where(ImageTms.class)
                 .equalTo("fileName", filename)
                 .findFirst();
@@ -180,6 +194,65 @@ public class RealmManager {
         realm.commitTransaction();
         realm.close();
         return result;
+    }
+
+    public void upsertHashtagMain(HashtagMain hashtagMain) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(hashtagMain);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    public void upsertHashtagValue(List<HashtagValue> hashtagValueList) {
+        for (HashtagValue hashtagValue : hashtagValueList) {
+            Log.d("TEST", "upsertHashtagValue: " + hashtagValue.getListName());
+        }
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(hashtagValueList);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    public void upsertListMain(List<ListMain> listMains) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(listMains);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    public List<HashtagMain> getLastUpdateByTbName(String tbName) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<HashtagMain> result = realm.where(HashtagMain.class)
+                .equalTo("tbName", tbName)
+                .findAll();
+        List<HashtagMain> listResult = realm.copyFromRealm(result);
+        realm.close();
+        return listResult;
+    }
+
+    public List<HashtagValue> getHashtagValue(String groupId, String typeId) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<HashtagValue> result = realm.where(HashtagValue.class)
+                .equalTo("groupId", groupId)
+                .equalTo("typeId", typeId)
+                .equalTo("status", "Active")
+                .findAll();
+        List<HashtagValue> listResult = realm.copyFromRealm(result);
+        realm.close();
+        return listResult;
+    }
+
+    public List<ListMain> getListMain() {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<ListMain> result = realm.where(ListMain.class)
+                .equalTo("status", "Active")
+                .findAll();
+        List<ListMain> listResult = realm.copyFromRealm(result);
+        realm.close();
+        return listResult;
     }
 
 }

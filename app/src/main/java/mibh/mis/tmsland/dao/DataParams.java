@@ -46,7 +46,7 @@ public class DataParams implements Parcelable {
     };
 
     public String getType() {
-        return type;
+        return type == null ? "" : type;
     }
 
     public void setType(String type) {
@@ -54,7 +54,7 @@ public class DataParams implements Parcelable {
     }
 
     public String getDocId() {
-        return docId;
+        return docId == null ? "" : docId;
     }
 
     public void setDocId(String docId) {
@@ -62,7 +62,7 @@ public class DataParams implements Parcelable {
     }
 
     public String getItemId() {
-        return itemId;
+        return itemId == null ? "" : itemId;
     }
 
     public void setItemId(String itemId) {
@@ -70,7 +70,7 @@ public class DataParams implements Parcelable {
     }
 
     public String getTypeImg() {
-        return typeImg;
+        return typeImg == null ? "" : typeImg;
     }
 
     public void setTypeImg(String typeImg) {
@@ -78,7 +78,7 @@ public class DataParams implements Parcelable {
     }
 
     public String getMode() {
-        return mode;
+        return mode == null ? "" : mode;
     }
 
     public void setMode(String mode) {
@@ -86,7 +86,7 @@ public class DataParams implements Parcelable {
     }
 
     public String getDetail() {
-        return detail;
+        return detail == null ? "" : detail;
     }
 
     public void setDetail(String detail) {
@@ -94,7 +94,7 @@ public class DataParams implements Parcelable {
     }
 
     public String getStatus() {
-        return status;
+        return status == null ? "" : status;
     }
 
     public void setStatus(String status) {

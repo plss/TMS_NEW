@@ -19,6 +19,11 @@ public class ImageTms extends RealmObject {
     private String dateImg;
     private String statUpd;
     private String commentImg;
+    private String truckId;
+    private String driverId;
+    private String firstname;
+    private String lastname;
+    private String locationName;
 
     public String getWorkId() {
         return workId;
@@ -98,5 +103,45 @@ public class ImageTms extends RealmObject {
 
     public void setCommentImg(String commentImg) {
         this.commentImg = commentImg;
+    }
+
+    public String getTruckId() {
+        return truckId;
+    }
+
+    public void setTruckId(String truckId) {
+        this.truckId = truckId;
+    }
+
+    public String getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

@@ -5,16 +5,14 @@
     android:orientation="vertical">
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#FFF"
         android:padding="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -57,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/round_square"
+                android:background="@drawable/bg_round"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -167,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/round_square"
+                android:background="@drawable/bg_round"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -299,5 +297,17 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnDetailConfirmClose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_btn_status_red"
+        android:text="ยืนยันการปิดงาน"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_medium_btn" />
+
 </LinearLayout>

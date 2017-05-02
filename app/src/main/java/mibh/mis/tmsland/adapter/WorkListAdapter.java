@@ -1,12 +1,10 @@
 package mibh.mis.tmsland.adapter;
 
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
 import mibh.mis.tmsland.activity.ImageTypeActivity;
@@ -14,7 +12,7 @@ import mibh.mis.tmsland.activity.WorkDetailActivity;
 import mibh.mis.tmsland.dao.DataParams;
 import mibh.mis.tmsland.dao.WorkDao;
 import mibh.mis.tmsland.manager.DataManager;
-import mibh.mis.tmsland.manager.PreferencesManage;
+import mibh.mis.tmsland.manager.PrefManage;
 import mibh.mis.tmsland.utils.Utils;
 import mibh.mis.tmsland.view.WorkListItem;
 
@@ -23,6 +21,12 @@ import mibh.mis.tmsland.view.WorkListItem;
  */
 
 public class WorkListAdapter extends BaseAdapter {
+
+    private SparseBooleanArray checkStates;
+
+    public WorkListAdapter(SparseBooleanArray checkStates) {
+        this.checkStates = checkStates;
+    }
 
     @Override
     public int getCount() {
@@ -55,6 +59,7 @@ public class WorkListAdapter extends BaseAdapter {
         item.setTextSource(workDao.getSourceName());
         item.setTextDest(workDao.getDestName());
         item.setTextProduct(workDao.getProductName());
+        item.setBgStatusBar(checkStates.get(i));
 
         View.OnClickListener cameraClickListener = new View.OnClickListener() {
             @Override
@@ -63,10 +68,19 @@ public class WorkListAdapter extends BaseAdapter {
                         workDao.getDestName(),
                         workDao.getSourceLatLng(),
                         workDao.getDestLatLng(),
-                        PreferencesManage.getInstance().getLatitude(),
-                        PreferencesManage.getInstance().getLongtitude());
-
-                if (inStation.equalsIgnoreCase("No")) {
+                        PrefManage.getInstance().getLatitude(),
+                        PrefManage.getInstance().getLongitude());
+                DataParams dataParams = new DataParams();
+                dataParams.setType("WORK");
+                dataParams.setDocId(workDao.getWoHeaderDocId());
+                dataParams.setItemId(workDao.getWoItemDocId());
+                dataParams.setDetail(workDao.getProductName().replace("ขึ้น", "").replace("ลง", "").trim());
+                dataParams.setStatus(inStation);
+                Intent intent = new Intent(viewGroup.getContext(), ImageTypeActivity.class);
+                intent.putExtra("DataParams", dataParams);
+                //viewGroup.getContext().startActivity(intent);
+                ((Activity) viewGroup.getContext()).startActivityForResult(intent, i + 100);
+                /*if (inStation.equalsIgnoreCase("No")) {
                     AlertDialog.Builder builderSingle = new AlertDialog.Builder(viewGroup.getContext());
                     builderSingle.setTitle("กรุณาเลือกสถานที่");
                     final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(viewGroup.getContext(), android.R.layout.select_dialog_singlechoice);
@@ -116,7 +130,7 @@ public class WorkListAdapter extends BaseAdapter {
                     Intent intent = new Intent(viewGroup.getContext(), ImageTypeActivity.class);
                     intent.putExtra("DataParams", dataParams);
                     viewGroup.getContext().startActivity(intent);
-                }
+                }*/
 
             }
         };

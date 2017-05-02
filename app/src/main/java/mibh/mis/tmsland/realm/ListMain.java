@@ -1,17 +1,26 @@
 package mibh.mis.tmsland.realm;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by ponlakiss on 05/13/2016.
  */
 public class ListMain extends RealmObject {
 
-    private String listId = "LIST_ID";
-    private String listName = "LIST_NAME";
-    private String valueDate = "VALUE_DATE";
-    private String serverDate = "SERVERDATE";
-    private String status = "STATUS";
+    @PrimaryKey
+    @SerializedName("LIST_ID")
+    private String listId;
+    @SerializedName("LIST_NAME")
+    private String listName;
+    @SerializedName("VALUE_DATE")
+    private String valueDate;
+    @SerializedName("SERVERDATE")
+    private String serverDate;
+    @SerializedName("STATUS")
+    private String status;
 
     public String getListId() {
         return listId;

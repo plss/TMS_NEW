@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import mibh.mis.tmsland.R;
 
 /**
- * Created by nuuneoi on 11/16/2014.
+ * Created by ponlakis on 03/24/2017.
  */
 public class FragmentTemplate extends Fragment {
 

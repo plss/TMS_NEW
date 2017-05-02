@@ -12,16 +12,22 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:name="mibh.mis.tmsland.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:node="replace">
-        <activity android:name="mibh.mis.tmsland.activity.SplashScreen">
+        tools:replace="android:icon">
+        <activity
+            android:name=".activity.SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,32 +35,87 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="mibh.mis.tmsland.activity.MoreInfoActivity"
+            android:name=".activity.MoreInfoActivity"
             android:label="รายละเอียด"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithActionbar" />
         <activity
-            android:name="mibh.mis.tmsland.activity.ImageTypeActivity"
+            android:name=".activity.ImageTypeActivity"
             android:label="รายการถ่ายภาพ"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithActionbar" />
         <activity
-            android:name="mibh.mis.tmsland.activity.WorkDetailActivity"
+            android:name=".activity.WorkDetailActivity"
             android:label="รายละเอียด"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithActionbar" />
-
         <activity
-            android:name="mibh.mis.tmsland.activity.ImageGalleryActivity"
+            android:name=".activity.ImageGalleryActivity"
             android:label="รายการภาพถ่าย"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeWithActionbar" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="landscape"
+            tools:replace="screenOrientation" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CameraActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SignaturePadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DialogNotificationActivity"
+            android:theme="@style/AppDialogNotificationTheme" />
+        <activity android:name=".activity.NewsActivity" />
+        <activity
+            android:name=".activity.MtnCloseActivity"
+            android:label="ตรวจสภาพ/รายงานตัว"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithActionbar" />
 
-        <activity android:name="mibh.mis.tmsland.activity.MainActivity" />
-        <activity android:name="mibh.mis.tmsland.activity.LoginActivity" />
-        <activity android:name="mibh.mis.tmsland.activity.CameraActivity" />
-        <activity android:name="mibh.mis.tmsland.activity.SignaturePadActivity" />
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.measurement.UPLOAD" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".service.FbInstanceIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".service.FbMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".service.UploadImageService"
+            android:enabled="true"
+            android:label="Upload Picture" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
     </application>
 
 </manifest>

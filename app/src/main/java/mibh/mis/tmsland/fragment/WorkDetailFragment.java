@@ -2,16 +2,19 @@ package mibh.mis.tmsland.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import mibh.mis.tmsland.R;
 import mibh.mis.tmsland.dao.DataParams;
 import mibh.mis.tmsland.dao.PlanDao;
 import mibh.mis.tmsland.dao.WorkDao;
+import mibh.mis.tmsland.manager.Contextor;
 import mibh.mis.tmsland.manager.DataManager;
 
 public class WorkDetailFragment extends Fragment {
@@ -19,7 +22,7 @@ public class WorkDetailFragment extends Fragment {
     private TextView tvSource, tvDest,
             tvWoHeader, tvDateStart, tvTimeStart, tvDateAlive, tvTimeAlive,
             tvProduct, tvPlanStart, tvCustomer, tvDistance, tvHeadLicense, tvTailLicense, tvRemark;
-
+    private Button btnConfirmClose;
 
     public WorkDetailFragment() {
         super();
@@ -55,6 +58,7 @@ public class WorkDetailFragment extends Fragment {
         tvHeadLicense = (TextView) rootView.findViewById(R.id.tvDetailHeadLicense);
         tvTailLicense = (TextView) rootView.findViewById(R.id.tvDetailTailLicense);
         tvRemark = (TextView) rootView.findViewById(R.id.tvDetailRemark);
+        btnConfirmClose = (Button) rootView.findViewById(R.id.btnDetailConfirmClose);
 
         setViewValue();
 
@@ -67,6 +71,7 @@ public class WorkDetailFragment extends Fragment {
 
         if (type.equalsIgnoreCase("work")) {
             WorkDao workDao = DataManager.getInstance().getWorkList().get(index);
+            btnConfirmClose.setVisibility(View.VISIBLE);
             tvSource.setText(workDao.getSourceName());
             tvDest.setText(workDao.getDestName());
             tvWoHeader.setText(workDao.getWoHeaderDocId());
@@ -96,11 +101,22 @@ public class WorkDetailFragment extends Fragment {
             }
             tvCustomer.setText(workDao.getCustomerName());
             tvDistance.setText(workDao.getDistancePlan() + " กม.");
-            tvHeadLicense.setText(workDao.getTruckLicense() + " " + workDao.getTruckLicenseProvince());
-            tvTailLicense.setText(workDao.getTailLicense() + " " + workDao.getTailLicenseProvince());
+            /*tvHeadLicense.setText(workDao.getTruckLicense() + " " + workDao.getTruckLicenseProvince());
+            tvTailLicense.setText(workDao.getTailLicense() + " " + workDao.getTailLicenseProvince());*/
+            tvHeadLicense.setText(workDao.getTruckId() + "/" + workDao.getTruckLicense());
+            tvTailLicense.setText(workDao.getTailId() + "/" + workDao.getTailLicense());
             tvRemark.setText(workDao.getRemarkProductDetail());
+            btnConfirmClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Fragment fragment = CloseWorkFragment.newInstance();
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.moreInfoContent, fragment).addToBackStack(null).commit();
+                }
+            });
         } else {
             PlanDao planDao = DataManager.getInstance().getPlanList().get(index);
+            btnConfirmClose.setVisibility(View.GONE);
             tvSource.setText(planDao.getSourceName());
             tvDest.setText(planDao.getDestName());
             tvWoHeader.setText(planDao.getDocId());

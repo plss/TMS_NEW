@@ -19,6 +19,11 @@
             android:title="เติมเชื้อเพลิง" />
 
         <item
+            android:id="@+id/drawer_news_feed"
+            android:icon="@drawable/ic_action_feed"
+            android:title="ข่าวสาร" />
+
+        <item
             android:id="@+id/drawer_cash"
             android:icon="@drawable/cash"
             android:title="เงินค่าเที่ยว" />

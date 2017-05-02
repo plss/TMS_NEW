@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:scrollbarStyle="outsideOverlay">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvTitleNewsType4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="แกล้ง"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvContentNewsType4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="ทรมานกับการต้องยอม ยอมให้เธอทำร้ายหัวใจ ไม่รู้กี่ครั้งที่ให้อภัย สุดท้ายก็ยังเป็นเหมือนเดิม ก็อยากจะรักตัวเอง ก็เลยต้องตัดใจ พูดว่าพอกันสักที แต่แค่เธอแกล้งทำดี ก็กลับคำที่พูดไป
+                    \nก็เพียงแค่คิดว่าฉัน จะไม่มีเธอ ก็ไม่มีเรี่ยวแรง จะเดินไป ก็มันยากมันเย็นเหลือเกิน จะบอกลาเธอทุกครั้ง ต้องกลายเป็นคนที่พูด แล้วไม่ทำ ทุกๆ คำที่เคยได้บอกไป ก็อยากจะหนีเธอไปเท่าไร ก็ทำไม่ได้ คงเหมือนคนที่ดูโง่งม ที่ไปจากเธอไม่ได้สักที เธอรู้ว่าฉันต้องเป็นอย่างนี้ ที่ไม่มีทางไปพ้นเธอ"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

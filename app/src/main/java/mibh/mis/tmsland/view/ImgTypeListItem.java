@@ -92,8 +92,7 @@ public class ImgTypeListItem extends BaseCustomViewGroup {
 
     public void setStateIcon(boolean state) {
         if (state) ivIcon.setImageResource(R.drawable.marked_circle_green);
-        else ivIcon.setImageResource(R.drawable.marked_circle);
-
+        else ivIcon.setImageResource(R.drawable.close_circle);
     }
 
     public void setOnClickBtn(OnClickListener onClickListener) {

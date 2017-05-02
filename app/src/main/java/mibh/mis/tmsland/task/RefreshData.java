@@ -7,12 +7,10 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import mibh.mis.tmsland.dao.FuelDao;
 import mibh.mis.tmsland.dao.PlanDao;
 import mibh.mis.tmsland.dao.WorkDao;
-import mibh.mis.tmsland.manager.Contextor;
 import mibh.mis.tmsland.manager.DataManager;
-import mibh.mis.tmsland.manager.PreferencesManage;
+import mibh.mis.tmsland.manager.PrefManage;
 import mibh.mis.tmsland.service.CallService;
 
 /**
@@ -41,12 +39,12 @@ public class RefreshData extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
 
-        truckId = PreferencesManage.getInstance().getTruckId();
-        empId = PreferencesManage.getInstance().getDriverId();
+        truckId = PrefManage.getInstance().getTruckId();
+        empId = PrefManage.getInstance().getDriverId();
 
         pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText("Updating data..");
+        pDialog.setTitleText("ดาวน์โหลดข้อมูล..");
         pDialog.setCancelable(false);
         pDialog.show();
     }
@@ -83,7 +81,7 @@ public class RefreshData extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         if (listWork.size() > 0) {
-            PreferencesManage.getInstance().setLastWork(listWork.get(0).getWoHeaderDocId());
+            PrefManage.getInstance().setLastWork(listWork.get(0).getWoHeaderDocId());
         }
         if (listPlan.size() > 0) {
             if (listPlan.get(0).getDocId().equals("NOPLAN"))

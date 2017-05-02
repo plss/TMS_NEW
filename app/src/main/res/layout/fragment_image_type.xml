@@ -8,8 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
-        android:dividerHeight="0dp"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp" />
+        android:dividerHeight="0dp" />
 
 </RelativeLayout>

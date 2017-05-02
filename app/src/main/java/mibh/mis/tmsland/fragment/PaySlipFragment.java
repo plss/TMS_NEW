@@ -3,6 +3,7 @@ package mibh.mis.tmsland.fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,13 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import mibh.mis.tmsland.R;
-import mibh.mis.tmsland.manager.PreferencesManage;
+import mibh.mis.tmsland.manager.PrefManage;
 
 public class PaySlipFragment extends Fragment {
 
     private WebView webView;
     private ProgressBar progressBar;
+    private SwipeRefreshLayout refreshLayout;
 
     public PaySlipFragment() {
         super();
@@ -41,15 +43,16 @@ public class PaySlipFragment extends Fragment {
     private void initInstances(View rootView) {
         webView = (WebView) rootView.findViewById(R.id.wvPaySlip);
         progressBar = (ProgressBar) rootView.findViewById(R.id.pbPaySlip);
+        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipePaySlipContainer);
 
         webView.getSettings().setJavaScriptEnabled(true);
         progressBar.setVisibility(View.VISIBLE);
         webView.setWebChromeClient(chromeClient);
         webView.setWebViewClient(webViewClient);
         webView.loadUrl("http://www.mibholding.com/TMS_Mobile/TMS_ViewPayRoll.aspx?EMP=" +
-                PreferencesManage.getInstance().getDriverId() +
+                PrefManage.getInstance().getDriverId() +
                 "&TRUCKID=" +
-                PreferencesManage.getInstance().getTruckId());
+                PrefManage.getInstance().getTruckId());
 
     }
 
@@ -63,18 +66,12 @@ public class PaySlipFragment extends Fragment {
         super.onStop();
     }
 
-    /*
-     * Save Instance State Here
-     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         // Save Instance State here
     }
 
-    /*
-     * Restore Instance State Here
-     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -93,6 +90,7 @@ public class PaySlipFragment extends Fragment {
         @Override
         public void onPageFinished(WebView view, String url) {
             progressBar.setVisibility(View.GONE);
+            refreshLayout.setRefreshing(false);
             view.setVisibility(View.VISIBLE);
             view.bringToFront();
         }
@@ -100,6 +98,7 @@ public class PaySlipFragment extends Fragment {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             view.setVisibility(View.GONE);
+            refreshLayout.setRefreshing(true);
         }
     };
 }

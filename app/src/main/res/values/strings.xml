@@ -3,12 +3,23 @@
     <string name="open_drawer">Open Menu</string>
     <string name="close_drawer">Close Menu</string>
     <string name="refresh">Refresh</string>
+    <string name="share_line">Share Line</string>
+
+    <string name="type.work">WORK</string>
+    <string name="type.fuel">FUEL</string>
+    <string name="type.signature">SIGNATURE</string>
+    <string name="type.maintenance">MAINTENANCE</string>
+    <string name="type.mtndriver">MTNDRIVER</string>
+    <string name="type.mtntail">MTNTAIL</string>
+    <string name="type.reqwork">REQWORK</string>
+    <string name="type.closework">CLOSEWORK</string>
 
     <string name="menu.plan">ยืนยันเปิดงาน</string>
     <string name="menu.work">คำสั่งวิ่งงาน</string>
     <string name="menu.fuel">เติมเชื้อเพลิง</string>
     <string name="menu.doc.work">ใบงานขนส่ง</string>
     <string name="menu.doc.fuel">ใบเบิกเชื้อเพลิง</string>
+    <string name="menu.news.feed">ข่าวสาร</string>
     <string name="menu.cash">เงินค่าเที่ยว</string>
     <string name="menu.slip">สลิปเงินเดือน</string>
     <string name="menu.check">ตรวจสภาพ / รายงานตัว</string>
@@ -19,7 +30,6 @@
     <string name="menu.hrms">การลา</string>
     <string name="menu.logout">ออกจากระบบ</string>
 
-
     <string-array name="work_image_type">
         <item>สถานที่รับ/ส่ง</item>
         <item>สินค้า</item>
@@ -28,6 +38,7 @@
         <item>ห้องชั่ง</item>
         <item>ล้างรถ</item>
         <item>แจ้งปัญหา/อุบัติเหตุ</item>
+        <item>สลับหาง</item>
         <item>อื่นๆ</item>
     </string-array>
 
@@ -49,6 +60,11 @@
         <item>อื่นๆ</item>
     </string-array>
 
+    <string-array name="mtntail_image_type">
+        <item>หางลาก</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
     <string-array name="mtndriver_image_type">
         <item>พนักงาน</item>
         <item>อื่นๆ</item>
@@ -56,6 +72,13 @@
 
     <string-array name="reqwork_image_type">
         <item>พนักงาน</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
+    <string-array name="closework_image_type">
+        <item>พนักงาน</item>
+        <item>หัวลาก</item>
+        <item>หางลาก</item>
         <item>อื่นๆ</item>
     </string-array>
 

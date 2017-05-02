@@ -1,7 +1,9 @@
 package mibh.mis.tmsland.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import mibh.mis.tmsland.R;
@@ -27,4 +29,5 @@ public class MoreInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
 }

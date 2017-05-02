@@ -1,18 +1,20 @@
 package mibh.mis.tmsland.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,18 +27,21 @@ import com.yayandroid.locationmanager.constants.ProviderType;
 
 import java.util.Calendar;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import mibh.mis.tmsland.R;
+import mibh.mis.tmsland.fragment.CameraOtherFragment;
 import mibh.mis.tmsland.fragment.FuelFragment;
-import mibh.mis.tmsland.fragment.ImageTypeFragment;
-import mibh.mis.tmsland.fragment.MainFragment;
+import mibh.mis.tmsland.fragment.MtnFragment;
+import mibh.mis.tmsland.fragment.NewsFeedFragment;
 import mibh.mis.tmsland.fragment.PaySlipFragment;
 import mibh.mis.tmsland.fragment.PlanFragment;
+import mibh.mis.tmsland.fragment.ScanCodeFragment;
 import mibh.mis.tmsland.fragment.WorkFragment;
 import mibh.mis.tmsland.manager.DataManager;
-import mibh.mis.tmsland.manager.PreferencesManage;
+import mibh.mis.tmsland.manager.PrefManage;
 import mibh.mis.tmsland.task.GetLocationName;
 import mibh.mis.tmsland.task.RefreshData;
-import mibh.mis.tmsland.utils.MyDebug;
+import mibh.mis.tmsland.utils.Utils;
 
 public class MainActivity extends LocationBaseActivity implements RefreshData.OnRefreshComplete {
 
@@ -45,6 +50,7 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
     private Toolbar toolbar;
     private NavigationView navigationView;
     private int selectedPosition;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +59,14 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
 
         initInstance();
         getLocation();
-
     }
 
     private void initInstance() {
         setToolbar();
         setDrawer();
 
-        if (!isCheckedStatus())
-            selectedPosition = 5;
+        if (isCheckedStatus())
+            selectedPosition = 6;
         else if (isWork())
             selectedPosition = 1;
         else selectedPosition = 0;
@@ -87,9 +92,9 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
         TextView empName = (TextView) headerLayout.findViewById(R.id.drawerEmpName);
         TextView truckId = (TextView) headerLayout.findViewById(R.id.drawerTruckId);
 
-        empId.setText("รหัสพนักงาน " + PreferencesManage.getInstance().getDriverId());
-        empName.setText(PreferencesManage.getInstance().getFirstName() + " " + PreferencesManage.getInstance().getLastName());
-        truckId.setText("เบอร์รถ " + PreferencesManage.getInstance().getTruckId());
+        empId.setText("รหัสพนักงาน " + PrefManage.getInstance().getDriverId());
+        empName.setText(PrefManage.getInstance().getFirstName() + " " + PrefManage.getInstance().getLastName());
+        truckId.setText("เบอร์รถ " + PrefManage.getInstance().getTruckId());
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 MainActivity.this,
@@ -115,30 +120,33 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
                     case R.id.drawer_fuel:
                         selectedPosition = 2;
                         break;
-                    case R.id.drawer_cash:
+                    case R.id.drawer_news_feed:
                         selectedPosition = 3;
                         break;
-                    case R.id.drawer_slip:
+                    case R.id.drawer_cash:
                         selectedPosition = 4;
                         break;
-                    case R.id.drawer_check:
+                    case R.id.drawer_slip:
                         selectedPosition = 5;
                         break;
-                    case R.id.drawer_cam:
+                    case R.id.drawer_check:
                         selectedPosition = 6;
                         break;
-                    case R.id.drawer_scanqr:
+                    case R.id.drawer_cam:
                         selectedPosition = 7;
                         break;
-                    case R.id.drawer_weight:
+                    case R.id.drawer_scanqr:
                         selectedPosition = 8;
                         break;
-                    case R.id.drawer_hrms:
+                    case R.id.drawer_weight:
                         selectedPosition = 9;
+                        break;
+                    case R.id.drawer_hrms:
+                        selectedPosition = 10;
                         break;
                     case R.id.drawer_logout:
                         //Snackbar.make(mContentFrame, "Log Out", Snackbar.LENGTH_SHORT).show();
-                        selectedPosition = 10;
+                        selectedPosition = 11;
                         break;
                     default:
                         break;
@@ -166,25 +174,65 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
                 fragment = FuelFragment.newInstance();
                 break;
             case 3:
-                toolbar.setTitle(R.string.menu_cash);
-                //fragment = ImageTypeFragment.newInstance();
-                //break;
+                toolbar.setTitle(R.string.menu_news_feed);
+                fragment = NewsFeedFragment.newInstance();
+                break;
             case 4:
+                //toolbar.setTitle(R.string.menu_cash);
+                //fragment = NewsType1Fragment.newInstance();
+                //break;
+            case 5:
                 toolbar.setTitle(R.string.menu_slip);
                 fragment = PaySlipFragment.newInstance();
                 break;
-            case 5:
-                toolbar.setTitle(R.string.menu_check);
-                break;
             case 6:
+                toolbar.setTitle(R.string.menu_check);
+                fragment = MtnFragment.newInstance();
                 break;
             case 7:
+                toolbar.setTitle(R.string.menu_cam);
+                fragment = CameraOtherFragment.newInstance();
                 break;
             case 8:
+                toolbar.setTitle(R.string.menu_scanqr);
+                fragment = ScanCodeFragment.newInstance();
                 break;
             case 9:
+                try {
+                    Intent intent = getPackageManager().getLaunchIntentForPackage("com.example.app.wmsonmobile");
+                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Utils.getInstance().showSweetAlertDialog(this, "ไม่สามารถเปิดแอพได้", "กรุณาติดตั้ง WMS on mobile");
+                }
                 break;
             case 10:
+                try {
+                    Intent intent = getPackageManager().getLaunchIntentForPackage("aa2.network2.hrmsmobileapp2");
+                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("ไม่สามารถเปิดแอพได้")
+                            .setContentText("กรุณาติดตั้ง HRMS on mobile")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    final String appPackageName = "aa2.network2.hrmsmobileapp2";
+                                    try {
+                                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                                    } catch (android.content.ActivityNotFoundException anfe) {
+                                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                                    }
+                                }
+                            })
+                            .show();
+                }
+                break;
+            case 11:
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
             default:
                 break;
@@ -232,8 +280,13 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
     public LocationConfiguration getLocationConfiguration() {
         return new LocationConfiguration()
                 .keepTracking(true)
+                .useOnlyGPServices(false)
+                .doNotUseGooglePlayServices(false)
                 .askForGooglePlayServices(true)
+                .askForEnableGPS(true)
                 .setMinAccuracy(200.0f)
+                .setWithinTimePeriod(60 * 1000)
+                .setTimeInterval(60 * 1000)
                 .setWaitPeriod(ProviderType.GOOGLE_PLAY_SERVICES, 5 * 1000)
                 .setWaitPeriod(ProviderType.GPS, 10 * 1000)
                 .setWaitPeriod(ProviderType.NETWORK, 5 * 1000)
@@ -274,16 +327,18 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
 
     @Override
     public void onLocationChanged(Location location) {
-        Toast.makeText(this, location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
-        if (MyDebug.LOG)
-            Log.d("Test Location", "onLocationChanged: " + location.getLatitude() + " " + location.getLongitude());
+        //Toast.makeText(this, location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
         new GetLocationName(location.getLatitude(), location.getLongitude()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     private boolean isCheckedStatus() {
-        if (Calendar.getInstance().getTimeInMillis() / (24 * 60 * 60 * 1000) != PreferencesManage.getInstance().getLastCheckStatus() / (24 * 60 * 60 * 1000))
-            return false;
-        else return true;
+        if (Calendar.getInstance().getTimeInMillis() / (24 * 60 * 60 * 1000) != PrefManage.getInstance().getLastCheckStatus() / (24 * 60 * 60 * 1000)) {
+            PrefManage.getInstance().setStatusTruck("");
+            PrefManage.getInstance().setStatusTail("");
+            PrefManage.getInstance().setStatusDriver("");
+            PrefManage.getInstance().setStatusReserve("");
+            return true;
+        } else return false;
     }
 
     private boolean isWork() {
@@ -292,8 +347,8 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
 
     @Override
     public void onRefreshComplete() {
-        if (!isCheckedStatus())
-            selectedPosition = 5;
+        if (isCheckedStatus())
+            selectedPosition = 6;
         else if (isWork())
             selectedPosition = 1;
         else selectedPosition = 0;
@@ -302,4 +357,50 @@ public class MainActivity extends LocationBaseActivity implements RefreshData.On
         menu.getItem(selectedPosition).setChecked(true);
         selectedItem(selectedPosition);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /*if ((requestCode / 100) == 1) {
+            Fragment workFragment = WorkFragment.newInstance();
+            workFragment.onActivityResult(requestCode, resultCode, data);
+        }*/
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!Utils.getInstance().isGpsEnable() && !Utils.getInstance().isOnline()) {
+            Utils.getInstance().showAlertErrorFinish(this, "ไม่สามารถใช้งานได้", "กรุณาเปิดอินเตอร์เน็ตและจีพีเอส");
+        } else if (!Utils.getInstance().isGpsEnable()) {
+            Utils.getInstance().showAlertErrorFinish(this, "ไม่สามารถใช้งานได้", "กรุณาเปิดจีพีเอส");
+        } else if (!Utils.getInstance().isOnline()) {
+            Utils.getInstance().showAlertErrorFinish(this, "ไม่สามารถใช้งานได้", "กรุณาเปิดอินเตอร์เน็ต");
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        View parentLayout = findViewById(R.id.contentContainer);
+        Snackbar.make(parentLayout, "กด Back อีกครั้งเพื่อออก", Snackbar.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 3000);
+
+    }
+
 }

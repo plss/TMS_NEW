@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#80000000"
-        android:padding="4dp">
+        android:padding="2dp">
 
         <mibh.mis.tmsland.view.SquareImageView
             android:id="@+id/thumbImage"

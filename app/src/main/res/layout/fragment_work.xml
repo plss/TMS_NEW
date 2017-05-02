@@ -11,8 +11,10 @@
             android:id="@+id/tvWorkEmpty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="ไม่พบข้อมูลคำสั่งวิ่งงาน"
-            android:visibility="gone" />
+            android:textSize="26sp"
+            android:visibility="visible" />
 
     </FrameLayout>
 

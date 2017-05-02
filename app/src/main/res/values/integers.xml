@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="work_id_image_type">
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>91</item>
+    </integer-array>
+
+    <integer-array name="fuel_id_image_type">
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>93</item>
+    </integer-array>
+
+    <integer-array name="sign_id_image_type">
+        <item>50</item>
+        <item>51</item>
+    </integer-array>
+
+    <integer-array name="mtntruck_id_image_type">
+        <item>100</item>
+        <item>101</item>
+        <item>109</item>
+    </integer-array>
+
+    <integer-array name="mtntail_id_image_type">
+        <item>130</item>
+        <item>130</item>
+    </integer-array>
+
+    <integer-array name="mtndriver_id_image_type">
+        <item>102</item>
+        <item>119</item>
+    </integer-array>
+
+    <integer-array name="reqwork_id_image_type">
+        <item>120</item>
+        <item>129</item>
+    </integer-array>
+
+    <integer-array name="closework_id_image_type">
+        <item>140</item>
+        <item>141</item>
+        <item>142</item>
+        <item>149</item>
+    </integer-array>
+
+    <integer-array name="other_id">
+        <item>999</item>
+    </integer-array>
+
+</resources>

@@ -4,6 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.List;
+
 import mibh.mis.tmsland.dao.PlanDao;
 import mibh.mis.tmsland.manager.DataManager;
 import mibh.mis.tmsland.view.PlanListItem;
@@ -14,16 +16,23 @@ import mibh.mis.tmsland.view.WorkListItem;
  */
 
 public class PlanListAdapter extends BaseAdapter {
+
+    List<PlanDao> list = null;
+
+    public PlanListAdapter(List<PlanDao> list) {
+        this.list = list;
+    }
+
     @Override
     public int getCount() {
-        if (DataManager.getInstance().getPlanList() == null)
+        if (list == null)
             return 0;
-        else return DataManager.getInstance().getPlanList().size();
+        else return list.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return DataManager.getInstance().getPlanList().get(i);
+        return list.get(i);
     }
 
     @Override

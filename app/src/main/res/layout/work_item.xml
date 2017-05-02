@@ -6,7 +6,9 @@
     android:layout_marginTop="2dp"
     android:orientation="vertical"
     card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="@dimen/cardview_default_elevation">
+    card_view:cardElevation="@dimen/cardview_default_elevation"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +17,7 @@
 
         <LinearLayout
             android:id="@+id/cardStatusBar"
-            android:layout_width="5dp"
+            android:layout_width="3dp"
             android:layout_height="fill_parent"
             android:background="@drawable/card_statusbar_red"
             android:orientation="horizontal" />
@@ -44,7 +46,7 @@
                     android:layout_gravity="end"
                     android:text="เส้นทาง No. 1"
                     android:textColor="#000"
-                    android:textSize="@dimen/abc_text_size_medium_material" />
+                    android:textSize="@dimen/abc_text_size_menu_material" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -100,7 +102,7 @@
                     android:layout_gravity="end"
                     android:text="รายละเอียด"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/abc_text_size_menu_material" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <View
@@ -142,7 +144,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:lines="1"
-                            android:text="ลงชื่อยืนยัน"
+                            android:text="ลงชื่อ"
                             android:textAlignment="center"
                             android:textColor="#000"
                             android:textSize="@dimen/abc_text_size_menu_material" />
@@ -182,13 +184,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:lines="1"
-                            android:text="ถ่ายรูปยืนยัน"
+                            android:text="ถ่ายรูป"
                             android:textAlignment="center"
                             android:textColor="#000"
                             android:textSize="@dimen/abc_text_size_menu_material" />
 
                     </LinearLayout>
-
 
 
                 </RelativeLayout>

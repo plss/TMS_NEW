@@ -54,7 +54,7 @@ public class MainFragment extends Fragment {
             public void onClick(View view) {
                 List<ImageTms> list2 = RealmManager.getInstance().getImageInactive();
                 String strTemp = "TEST" + list2.size();
-                RealmManager.getInstance().insertImage(strTemp, strTemp, strTemp, strTemp, strTemp, strTemp, strTemp, strTemp, "INACTIVE", strTemp);
+                //RealmManager.getInstance().insertImage(strTemp, strTemp, strTemp, strTemp, strTemp, strTemp, strTemp, strTemp, "INACTIVE", strTemp);
                 startActivity(new Intent(getActivity(), MoreInfoActivity.class));
             }
         });

@@ -1,12 +1,14 @@
 package mibh.mis.tmsland.realm;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by ponlakiss on 05/13/2016.
  */
 public class HashtagMain extends RealmObject {
 
+    @PrimaryKey
     private String tbName;
     private String lastUpdate;
 

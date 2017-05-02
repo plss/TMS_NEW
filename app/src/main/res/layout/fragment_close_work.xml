@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="เลขไมล์"
+            android:textColor="#000"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+
+        <EditText
+            android:id="@+id/etMileClose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_round"
+            android:inputType="number"
+            android:lines="1"
+            android:padding="8dp"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+
+        <TextView
+            android:id="@+id/tvProductClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="น้ำหนักสินค้า"
+            android:textColor="#000"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etWeightInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/bg_round"
+                android:inputType="number"
+                android:lines="1"
+                android:padding="8dp"
+                android:textSize="@dimen/abc_text_size_medium_material" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="กก."
+                android:textColor="#000"
+                android:textSize="@dimen/abc_text_size_medium_material"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutScanDo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="สแกนเลขที่ DO"
+                android:textColor="#000"
+                android:textSize="@dimen/abc_text_size_medium_material" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etDoScan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_round"
+                    android:enabled="false"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:padding="8dp"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <Button
+                    android:id="@+id/btnScanDo"
+                    style="@style/dialog_blue_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:text="แสกน" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDefaultDo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="DO : 00000000"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cbCloseWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:text="ยืนยันปิดงาน"
+            android:textSize="@dimen/text_size_medium_btn" />
+
+        <LinearLayout
+            android:id="@+id/layoutStatusCloseWork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnStatusCloseWork"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_btn_status_red"
+                android:text="ตรวจสภาพก่อนปิดงาน"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_medium_btn" />
+
+            <Button
+                android:id="@+id/btnCameraStatusCloseWork"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_status_red"
+                android:text="ถ่ายรูปยืนยัน"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_medium_btn"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirmCloseWork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_btn_status_red"
+        android:enabled="false"
+        android:text="ยืนยันการปิดงาน"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_medium_btn" />
+
+</LinearLayout>

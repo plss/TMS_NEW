@@ -1,18 +1,22 @@
 package mibh.mis.tmsland.realm;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by ponlakiss on 05/13/2016.
  */
 public class HashtagValue extends RealmObject {
 
-    private String listId;
-    private String listName;
-    private String groupId;
-    private String typeId;
-    private String serverDate;
-    private String status;
+    @PrimaryKey
+    @SerializedName("LIST_ID")  private String listId;
+    @SerializedName("LIST_NAME")  private String listName;
+    @SerializedName("GROUP_ID")  private String groupId;
+    @SerializedName("TYPE_ID")  private String typeId;
+    @SerializedName("SERVERDATE")  private String serverDate;
+    @SerializedName("STATUS")  private String status;
 
     public String getListId() {
         return listId;

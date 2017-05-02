@@ -14,17 +14,34 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="ไม่พบข้อมูลใบเบิกเชื้อเพลิง"
+            android:textSize="26sp"
             android:visibility="gone" />
 
     </FrameLayout>
 
-    <ListView
-        android:id="@+id/listViewFuel"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listViewFuel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnAddFuelList"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+
+        <Button
+            android:id="@id/btnAddFuelList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_btn_status_green"
+            android:text="ขอใบเบิกเชื้อเพลิงเพิ่ม"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_medium_btn" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

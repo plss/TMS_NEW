@@ -12,7 +12,6 @@ import com.yayandroid.locationmanager.LocationManager;
 import com.yayandroid.locationmanager.LocationReceiver;
 
 public abstract class LocationBaseActivity extends AppCompatActivity implements LocationListener {
-
     private LocationManager locationManager;
 
     public abstract LocationConfiguration getLocationConfiguration();

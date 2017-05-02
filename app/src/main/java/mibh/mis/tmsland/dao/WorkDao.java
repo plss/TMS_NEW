@@ -10,50 +10,94 @@ import com.google.gson.annotations.SerializedName;
  */
 public class WorkDao implements Parcelable {
 
-    @SerializedName("WOHEADER_DOCID")       private String woHeaderDocId;
-    @SerializedName("COMPANY_ID")           private String companyId;
-    @SerializedName("COMPANY_NAME")         private String companyName;
-    @SerializedName("FLEET_ID")             private String fleetId;
-    @SerializedName("FLEET_NAME")           private String fleetName;
-    @SerializedName("MILE_OPEN")            private String mileOpen;
-    @SerializedName("EMP_OPEN")             private String empOpen;
-    @SerializedName("EMP_ID_OPEN")          private String empIdOpen;
-    @SerializedName("WOHEADER_OPEN")        private String woHeaderOpen;
-    @SerializedName("AMT_FUEL")             private String amtFuel;
-    @SerializedName("WOITEM_DOCID")         private String woItemDocId;
-    @SerializedName("SOURCE_ID")            private String sourceId;
-    @SerializedName("SOURCE_NAME")          private String sourceName;
-    @SerializedName("DEST_ID")              private String destId;
-    @SerializedName("DEST_NAME")            private String destName;
-    @SerializedName("DISTANCE_PLAN")        private Double distancePlan;
-    @SerializedName("DISTANCE_ACTUAL")      private Double distanceActual;
-    @SerializedName("AMT_SUBSTATIONFUEL")   private Double amtSubStationFuel;
-    @SerializedName("WOITEMTRUCK_DOCID")    private String woItemTruckDocId;
-    @SerializedName("TRUCK_ID")             private String truckId;
-    @SerializedName("TAIL_ID")              private String tailId;
-    @SerializedName("TRUCK_LICENSE")        private String truckLicense;
-    @SerializedName("TRUCK_LICENSE_PROVINCE")   private String truckLicenseProvince;
-    @SerializedName("TAIL_LICENSE")         private String tailLicense;
-    @SerializedName("TAIL_LICENSE_PROVINCE")    private String tailLicenseProvince;
-    @SerializedName("WOITEMPRODUCT_DOCID")  private String wiItemProductDocId;
-    @SerializedName("PRO_ID")               private String productId;
-    @SerializedName("PRO_NAME")             private String productName;
-    @SerializedName("STATUS_LOAD")          private String statusLoad;
-    @SerializedName("STATUS_UNLOAD")        private String statusUnload;
-    @SerializedName("PRO_UNIT_NAME")        private String productUnitName;
-    @SerializedName("DRIVER_ID")            private String driverId;
-    @SerializedName("DRIVER_FIRSTNAME")     private String driverFirstName;
-    @SerializedName("DRIVER_LASTNAME")      private String driverLastName;
-    @SerializedName("EMP_ID")               private String empId;
-    @SerializedName("CUSTOMER_NAME")        private String customerName;
-    @SerializedName("PLANSTARTSOURCE")      private String planStartSrouce;
-    @SerializedName("PLANSTARTWORK")        private String planStartWork;
-    @SerializedName("PLANARRIVEDEST")       private String planstartDest;
-    @SerializedName("Remark_ProductDetail") private String remarkProductDetail;
-    @SerializedName("SoureLatLng")          private String sourceLatLng;
-    @SerializedName("DestLatLng")           private String destLatLng;
+    @SerializedName("WOHEADER_DOCID")
+    private String woHeaderDocId;
+    @SerializedName("COMPANY_ID")
+    private String companyId;
+    @SerializedName("COMPANY_NAME")
+    private String companyName;
+    @SerializedName("FLEET_ID")
+    private String fleetId;
+    @SerializedName("FLEET_NAME")
+    private String fleetName;
+    @SerializedName("MILE_OPEN")
+    private String mileOpen;
+    @SerializedName("EMP_OPEN")
+    private String empOpen;
+    @SerializedName("EMP_ID_OPEN")
+    private String empIdOpen;
+    @SerializedName("WOHEADER_OPEN")
+    private String woHeaderOpen;
+    @SerializedName("AMT_FUEL")
+    private String amtFuel;
+    @SerializedName("WOITEM_DOCID")
+    private String woItemDocId;
+    @SerializedName("SOURCE_ID")
+    private String sourceId;
+    @SerializedName("SOURCE_NAME")
+    private String sourceName;
+    @SerializedName("DEST_ID")
+    private String destId;
+    @SerializedName("DEST_NAME")
+    private String destName;
+    @SerializedName("DISTANCE_PLAN")
+    private Double distancePlan;
+    @SerializedName("DISTANCE_ACTUAL")
+    private Double distanceActual;
+    @SerializedName("AMT_SUBSTATIONFUEL")
+    private Double amtSubStationFuel;
+    @SerializedName("WOITEMTRUCK_DOCID")
+    private String woItemTruckDocId;
+    @SerializedName("TRUCK_ID")
+    private String truckId;
+    @SerializedName("TAIL_ID")
+    private String tailId;
+    @SerializedName("TRUCK_LICENSE")
+    private String truckLicense;
+    @SerializedName("TRUCK_LICENSE_PROVINCE")
+    private String truckLicenseProvince;
+    @SerializedName("TAIL_LICENSE")
+    private String tailLicense;
+    @SerializedName("TAIL_LICENSE_PROVINCE")
+    private String tailLicenseProvince;
+    @SerializedName("WOITEMPRODUCT_DOCID")
+    private String wiItemProductDocId;
+    @SerializedName("PRO_ID")
+    private String productId;
+    @SerializedName("PRO_NAME")
+    private String productName;
+    @SerializedName("STATUS_LOAD")
+    private String statusLoad;
+    @SerializedName("STATUS_UNLOAD")
+    private String statusUnload;
+    @SerializedName("PRO_UNIT_NAME")
+    private String productUnitName;
+    @SerializedName("DRIVER_ID")
+    private String driverId;
+    @SerializedName("DRIVER_FIRSTNAME")
+    private String driverFirstName;
+    @SerializedName("DRIVER_LASTNAME")
+    private String driverLastName;
+    @SerializedName("EMP_ID")
+    private String empId;
+    @SerializedName("CUSTOMER_NAME")
+    private String customerName;
+    @SerializedName("PLANSTARTSOURCE")
+    private String planStartSrouce;
+    @SerializedName("PLANSTARTWORK")
+    private String planStartWork;
+    @SerializedName("PLANARRIVEDEST")
+    private String planstartDest;
+    @SerializedName("Remark_ProductDetail")
+    private String remarkProductDetail;
+    @SerializedName("SoureLatLng")
+    private String sourceLatLng;
+    @SerializedName("DestLatLng")
+    private String destLatLng;
+    @SerializedName("AMTPRODUCT_TF")
+    private String amtProductTf;
 
-    public WorkDao(){
+    public WorkDao() {
 
     }
 
@@ -97,6 +141,7 @@ public class WorkDao implements Parcelable {
         remarkProductDetail = in.readString();
         sourceLatLng = in.readString();
         destLatLng = in.readString();
+        amtProductTf = in.readString();
     }
 
     @Override
@@ -140,6 +185,7 @@ public class WorkDao implements Parcelable {
         dest.writeString(remarkProductDetail);
         dest.writeString(sourceLatLng);
         dest.writeString(destLatLng);
+        dest.writeString(amtProductTf);
     }
 
     @Override
@@ -493,5 +539,13 @@ public class WorkDao implements Parcelable {
 
     public void setDestLatLng(String destLatLng) {
         this.destLatLng = destLatLng;
+    }
+
+    public String getAmtProductTf() {
+        return amtProductTf;
+    }
+
+    public void setAmtProductTf(String amtProductTf) {
+        this.amtProductTf = amtProductTf;
     }
 }

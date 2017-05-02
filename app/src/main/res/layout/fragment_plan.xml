@@ -11,16 +11,54 @@
             android:id="@+id/tvPlanEmpty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ไม่พบข้อมูลคำสั่งวิ่งงาน"
-            android:visibility="gone" />
+            android:layout_gravity="center"
+            android:text="ไม่พบข้อมูลแผนงาน"
+            android:textSize="26sp"
+            android:visibility="visible" />
 
     </FrameLayout>
 
-    <ListView
-        android:id="@+id/listViewPlan"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listViewPlan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/viewBtnGroupPlan"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+
+        <LinearLayout
+            android:id="@id/viewBtnGroupPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAcceptPlan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_status_green"
+                android:text="ยืนยันเปิดงาน"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnRejectPlan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_status_red"
+                android:text="ปฏิเสธรับงาน"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

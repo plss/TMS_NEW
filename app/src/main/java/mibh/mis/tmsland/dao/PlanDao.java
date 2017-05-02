@@ -10,85 +10,162 @@ import com.google.gson.annotations.SerializedName;
  */
 public class PlanDao implements Parcelable {
 
-    @SerializedName("PLHEADERDOCID")                private String docId;
-    @SerializedName("PLHEADERDATESTARTPLAN")        private String dateStartPlan;
-    @SerializedName("PLHEADERDATEENDPLAN")          private String dateEndPlan;
-    @SerializedName("PLHEADERREMARK")               private String remark;
-    @SerializedName("PLHEADEREMPOPEN")              private String empOpen;
-    @SerializedName("PLHEADERSTATUS")               private String status;
-    @SerializedName("PLHEADERAMTITEMPLAN")          private Double amtItemPlan;
-    @SerializedName("PLHEADERDATECREATE")           private String dateCreate;
-    @SerializedName("PLHEADERCOMPANYIDPLAN")        private String companyIdPlan;
-    @SerializedName("PLHEADERCOMPANYNAMEPLAN")      private String companyNamePlan;
-    @SerializedName("PLHEADERFLEETID")              private String fleetId;
-    @SerializedName("PLHEADERFLEETNAME")            private String fleetName;
-    @SerializedName("PLHEADERTRUCK")                private String truck;
-    @SerializedName("PLHEADERDISTANCE")             private String distance;
-    @SerializedName("PLHEADERFUEL")                 private String fuel;
-    @SerializedName("PLITEMDOCID")                  private String itemDocId;
-    @SerializedName("PLITEMITEMDISPLAY")            private String itemDisplay;
-    @SerializedName("PLITEMSOURCEID")               private String sourceId;
-    @SerializedName("PLITEMDESTID")                 private String destId;
-    @SerializedName("PLITEMDISTANCEPLAN")           private Double distancePlan;
-    @SerializedName("PLITEMFUELUSEDPLAN")           private String fuelUsePlan;
-    @SerializedName("PLITEMFUELRATEPLAN")           private String fuelRatePlan;
-    @SerializedName("PLITEMEMPPLAN")                private String empPlan;
-    @SerializedName("PLITEMPLANOPEN")               private String planOpen;
-    @SerializedName("PLITEMSOURCENAME")             private String sourceName;
-    @SerializedName("PLITEMDESTNAME")               private String destName;
-    @SerializedName("PLITEMREMARK")                 private String itemRemark;
-    @SerializedName("PLITEMSTATUS")                 private String itemStatus;
-    @SerializedName("PLITEMAMTPRODUCT")             private String amtProduct;
-    @SerializedName("ORHEADERDOCID")                private String orDocId;
-    @SerializedName("PLITEMPRODUCTPROID")           private String productId;
-    @SerializedName("PLITEMPRODUCTPROUNITID")       private String productUnit;
-    @SerializedName("PLITEMPRODUCTSOURCEIDLOAD")    private String sourceIdLoad;
-    @SerializedName("PLITEMPRODUCTDESTIDUNLOAD")    private String destIdUnload;
-    @SerializedName("PLITEMPRODUCTLOADING")         private String productLoading;
-    @SerializedName("PLITEMPRODUCTSOURCELOAD")      private String sourceLoad;
-    @SerializedName("PLITEMPRODUCTDESTUNLOAD")      private String destUnload;
-    @SerializedName("PLITEMPRODUCTSTATUS")          private String productStatus;
-    @SerializedName("PLITEMPRODUCTOPEN")            private String productOpen;
-    @SerializedName("PLITEMPRODUCTCLOSE")           private String productClose;
-    @SerializedName("PLITEMPRODUCTEMPOPEN")         private String productEmpOpen;
-    @SerializedName("PLITEMPRODUCTEMPCLOSE")        private String productEmpClose;
-    @SerializedName("PLITEMPRODUCTPRONAME")         private String productName;
-    @SerializedName("PLITEMPRODUCTPROUNITNAME")     private String productUnitName;
-    @SerializedName("PLITEMPRODUCTSOURCENAMELOAD")  private String sourceNameLoad;
-    @SerializedName("PLITEMPRODUCTDESTNAMEUNLOAD")  private String destNameUnload;
-    @SerializedName("PLITEMPRODUCTREMARK")          private String productRemark;
-    @SerializedName("PLITEMPRODUCTPAYMENTALLOWANCE")    private String productPaymentAllowance;
-    @SerializedName("PLITEMPRODUCTUNITIDALLOWANCE") private String productUnitIdAllowance;
-    @SerializedName("PLITEMPRODUCTUNITNAMEALLOWANCE")   private String productUnitNameAllowance;
-    @SerializedName("PLITEMPRODUCTWORKTYPEID")      private String workTypeId;
-    @SerializedName("PLITEMPRODUCTWORKTYPENAME")    private String workTypeName;
-    @SerializedName("PLCUSTOMERCUSTID")             private String customerId;
-    @SerializedName("PLCUSTOMERPROID")              private String customerProId;
-    @SerializedName("PLCUSTOMERTCUNITID")           private String customerUnitId;
-    @SerializedName("PLCUSTOMERCUSTNAME")           private String customerName;
-    @SerializedName("PLCUSTOMERTCUNITNAME")         private String customerUnitName;
-    @SerializedName("PLCUSTOMERSOURCEID")           private String customerSourceId;
-    @SerializedName("PLCUSTOMERDESTID")             private String customerDestId;
-    @SerializedName("PLCUSTOMERDISTANCETC")         private Double customerDistance;
-    @SerializedName("PLCUSTOMERPRONAME")            private String customerProName;
-    @SerializedName("PLCUSTOMERSOURCENAME")         private String customerSourceName;
-    @SerializedName("PLCUSTOMERDESTNAME")           private String customerDestName;
-    @SerializedName("PLCUSTOMERSTATUS")             private String customerStatus;
-    @SerializedName("PLCUSTOMERREMARK")             private String customerRemark;
-    @SerializedName("EMP_ID")                       private String empId;
-    @SerializedName("DRIVERID1")                    private String driverId1;
-    @SerializedName("DRIVERID2")                    private String driverId2;
-    @SerializedName("TITLE")                        private String title;
-    @SerializedName("F_NAME")                       private String firstName;
-    @SerializedName("L_NAME")                       private String latName;
-    @SerializedName("TEL")                          private String tel;
-    @SerializedName("POSITION_ID")                  private String positionId;
-    @SerializedName("POSITION_NAME")                private String positionName;
-    @SerializedName("DOCHEADER_URL")                private String docHeaderUrl;
-    @SerializedName("DOCITEM_URL")                  private String docItemUrl;
-    @SerializedName("DOCFUEL_URL")                  private String docFuelUrl;
+    @SerializedName("PLHEADERDOCID")
+    private String docId;
+    @SerializedName("PLHEADERDATESTARTPLAN")
+    private String dateStartPlan;
+    @SerializedName("PLHEADERDATEENDPLAN")
+    private String dateEndPlan;
+    @SerializedName("PLHEADERREMARK")
+    private String remark;
+    @SerializedName("PLHEADEREMPOPEN")
+    private String empOpen;
+    @SerializedName("PLHEADERSTATUS")
+    private String status;
+    @SerializedName("PLHEADERAMTITEMPLAN")
+    private Double amtItemPlan;
+    @SerializedName("PLHEADERDATECREATE")
+    private String dateCreate;
+    @SerializedName("PLHEADERCOMPANYIDPLAN")
+    private String companyIdPlan;
+    @SerializedName("PLHEADERCOMPANYNAMEPLAN")
+    private String companyNamePlan;
+    @SerializedName("PLHEADERFLEETID")
+    private String fleetId;
+    @SerializedName("PLHEADERFLEETNAME")
+    private String fleetName;
+    @SerializedName("PLHEADERTRUCK")
+    private String truck;
+    @SerializedName("PLHEADERDISTANCE")
+    private String distance;
+    @SerializedName("PLHEADERFUEL")
+    private String fuel;
+    @SerializedName("PLITEMDOCID")
+    private String itemDocId;
+    @SerializedName("PLITEMITEMDISPLAY")
+    private String itemDisplay;
+    @SerializedName("PLITEMSOURCEID")
+    private String sourceId;
+    @SerializedName("PLITEMDESTID")
+    private String destId;
+    @SerializedName("PLITEMDISTANCEPLAN")
+    private Double distancePlan;
+    @SerializedName("PLITEMFUELUSEDPLAN")
+    private String fuelUsePlan;
+    @SerializedName("PLITEMFUELRATEPLAN")
+    private String fuelRatePlan;
+    @SerializedName("PLITEMEMPPLAN")
+    private String empPlan;
+    @SerializedName("PLITEMPLANOPEN")
+    private String planOpen;
+    @SerializedName("PLITEMSOURCENAME")
+    private String sourceName;
+    @SerializedName("PLITEMDESTNAME")
+    private String destName;
+    @SerializedName("PLITEMREMARK")
+    private String itemRemark;
+    @SerializedName("PLITEMSTATUS")
+    private String itemStatus;
+    @SerializedName("PLITEMAMTPRODUCT")
+    private String amtProduct;
+    @SerializedName("ORHEADERDOCID")
+    private String orDocId;
+    @SerializedName("PLITEMPRODUCTPROID")
+    private String productId;
+    @SerializedName("PLITEMPRODUCTPROUNITID")
+    private String productUnit;
+    @SerializedName("PLITEMPRODUCTSOURCEIDLOAD")
+    private String sourceIdLoad;
+    @SerializedName("PLITEMPRODUCTDESTIDUNLOAD")
+    private String destIdUnload;
+    @SerializedName("PLITEMPRODUCTLOADING")
+    private String productLoading;
+    @SerializedName("PLITEMPRODUCTSOURCELOAD")
+    private String sourceLoad;
+    @SerializedName("PLITEMPRODUCTDESTUNLOAD")
+    private String destUnload;
+    @SerializedName("PLITEMPRODUCTSTATUS")
+    private String productStatus;
+    @SerializedName("PLITEMPRODUCTOPEN")
+    private String productOpen;
+    @SerializedName("PLITEMPRODUCTCLOSE")
+    private String productClose;
+    @SerializedName("PLITEMPRODUCTEMPOPEN")
+    private String productEmpOpen;
+    @SerializedName("PLITEMPRODUCTEMPCLOSE")
+    private String productEmpClose;
+    @SerializedName("PLITEMPRODUCTPRONAME")
+    private String productName;
+    @SerializedName("PLITEMPRODUCTPROUNITNAME")
+    private String productUnitName;
+    @SerializedName("PLITEMPRODUCTSOURCENAMELOAD")
+    private String sourceNameLoad;
+    @SerializedName("PLITEMPRODUCTDESTNAMEUNLOAD")
+    private String destNameUnload;
+    @SerializedName("PLITEMPRODUCTREMARK")
+    private String productRemark;
+    @SerializedName("PLITEMPRODUCTPAYMENTALLOWANCE")
+    private String productPaymentAllowance;
+    @SerializedName("PLITEMPRODUCTUNITIDALLOWANCE")
+    private String productUnitIdAllowance;
+    @SerializedName("PLITEMPRODUCTUNITNAMEALLOWANCE")
+    private String productUnitNameAllowance;
+    @SerializedName("PLITEMPRODUCTWORKTYPEID")
+    private String workTypeId;
+    @SerializedName("PLITEMPRODUCTWORKTYPENAME")
+    private String workTypeName;
+    @SerializedName("PLCUSTOMERCUSTID")
+    private String customerId;
+    @SerializedName("PLCUSTOMERPROID")
+    private String customerProId;
+    @SerializedName("PLCUSTOMERTCUNITID")
+    private String customerUnitId;
+    @SerializedName("PLCUSTOMERCUSTNAME")
+    private String customerName;
+    @SerializedName("PLCUSTOMERTCUNITNAME")
+    private String customerUnitName;
+    @SerializedName("PLCUSTOMERSOURCEID")
+    private String customerSourceId;
+    @SerializedName("PLCUSTOMERDESTID")
+    private String customerDestId;
+    @SerializedName("PLCUSTOMERDISTANCETC")
+    private Double customerDistance;
+    @SerializedName("PLCUSTOMERPRONAME")
+    private String customerProName;
+    @SerializedName("PLCUSTOMERSOURCENAME")
+    private String customerSourceName;
+    @SerializedName("PLCUSTOMERDESTNAME")
+    private String customerDestName;
+    @SerializedName("PLCUSTOMERSTATUS")
+    private String customerStatus;
+    @SerializedName("PLCUSTOMERREMARK")
+    private String customerRemark;
+    @SerializedName("EMP_ID")
+    private String empId;
+    @SerializedName("DRIVERID1")
+    private String driverId1;
+    @SerializedName("DRIVERID2")
+    private String driverId2;
+    @SerializedName("TITLE")
+    private String title;
+    @SerializedName("F_NAME")
+    private String firstName;
+    @SerializedName("L_NAME")
+    private String latName;
+    @SerializedName("TEL")
+    private String tel;
+    @SerializedName("POSITION_ID")
+    private String positionId;
+    @SerializedName("POSITION_NAME")
+    private String positionName;
+    @SerializedName("DOCHEADER_URL")
+    private String docHeaderUrl;
+    @SerializedName("DOCITEM_URL")
+    private String docItemUrl;
+    @SerializedName("DOCFUEL_URL")
+    private String docFuelUrl;
 
-    public PlanDao(){
+    public PlanDao() {
 
     }
 

@@ -1,5 +1,7 @@
 package mibh.mis.tmsland.activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,8 +32,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import mibh.mis.tmsland.R;
 import mibh.mis.tmsland.service.CallService;
+import mibh.mis.tmsland.service.UploadImageService;
 import mibh.mis.tmsland.utils.Utils;
 
 /**
@@ -51,18 +55,11 @@ public class SplashScreen extends AppCompatActivity {
 
         initInstances();
 
-        /*if(isPackageInstalled("mibh.mis.tms",this)){
-            Log.d("TEST", "onCreate: "  + " Have tms");
-            uninstallOldTms();
-        }*/
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new CheckingVersion().execute();
-            }
-        }, 1000);
+        if (!Utils.getInstance().isOnline()) {
+            Utils.getInstance().showAlertErrorFinish(this, "ไม่สามารถใช้งานได้", "กรุณาเปิดอินเตอร์เน็ต");
+        } else {
+            new CheckingVersion().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }
     }
 
     private boolean isPackageInstalled(String packagename, Context context) {
@@ -91,6 +88,7 @@ public class SplashScreen extends AppCompatActivity {
     private void startLoginActivity() {
         Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
         startActivity(intent);
+        finish();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
@@ -135,23 +133,43 @@ public class SplashScreen extends AppCompatActivity {
                     newVersion = c.getString("CURRENT_VERSION");
                     urlDownload = c.getString("URL");
                     if (Double.parseDouble(currentVersion) != Double.parseDouble(newVersion)) {
-                        //new DownloadFileApk().execute();
-                        startLoginActivity();
-                        finish();
+                        //TODO: Change update
+                        new DownloadFileApk().executeOnExecutor(THREAD_POOL_EXECUTOR);
+                        /*new SweetAlertDialog(SplashScreen.this, SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("มีการอัพเดทแอพพลิเคชั่น")
+                                .setContentText("กรุณาทำการติดตั้งแอพพลิเคชั่นเวอร์ชั่นใหม่เพื่อใช้งาน")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        sweetAlertDialog.dismiss();
+                                        final String appPackageName = "mibh.mis.tmsland";
+                                        try {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                                        } catch (android.content.ActivityNotFoundException anfe) {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                                        }
+                                        SplashScreen.this.finish();
+                                    }
+                                })
+                                .setCancelText("ยกเลิก")
+                                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        startLoginActivity();
+                                    }
+                                })
+                                .show();*/
                     } else {
                         startLoginActivity();
-                        finish();
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
                     showErrorDialog();
                 }
-
             }
         }
 
         private void showErrorDialog() {
-            AlertDialog.Builder builderSingle = new AlertDialog.Builder(SplashScreen.this);
+            /*AlertDialog.Builder builderSingle = new AlertDialog.Builder(SplashScreen.this);
             builderSingle.setMessage("ไม่สามารถตรวจสอบเวอชันได้");
             builderSingle.setPositiveButton("ตกลง",
                     new DialogInterface.OnClickListener() {
@@ -161,7 +179,15 @@ public class SplashScreen extends AppCompatActivity {
                             finish();
                         }
                     });
-            builderSingle.show();
+            builderSingle.show();*/
+            tvVersionDetail.setText("ไม่สามารถตรวจสอบเวอชันได้");
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startLoginActivity();
+                }
+            }, 1000);
         }
 
     }

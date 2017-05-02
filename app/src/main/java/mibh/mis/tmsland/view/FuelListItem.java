@@ -94,8 +94,9 @@ public class FuelListItem extends BaseCustomViewGroup {
         // Restore State from bundle here
     }
 
-    public void setIconFuel(int res) {
-        ivIconFuel.setBackground(getResources().getDrawable(res));
+    public void setIconFuel(boolean state) {
+        if (state) ivIconFuel.setImageResource(R.drawable.fuel_green);
+        else ivIconFuel.setImageResource(R.drawable.fuel_black);
     }
 
     public void setTextBtn(String txt) {

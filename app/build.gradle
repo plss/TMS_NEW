@@ -3,14 +3,14 @@ apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '24.0.2'
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "mibh.mis.tmsland"
         minSdkVersion 17
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 21
+        versionCode 3
+        versionName "2.41"
     }
     buildTypes {
         release {
@@ -23,21 +23,34 @@ android {
     }
 }
 
-def supportLibraryVersion = '24.1.1'
+def supportLibraryVersion = '24.2.1'
+def firebaseVersion = '10.2.0'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/android-adrlib.jar')
-    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
     compile "com.android.support:design:${supportLibraryVersion}"
     compile "com.android.support:support-v4:${supportLibraryVersion}"
+    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
     compile "com.android.support:cardview-v7:${supportLibraryVersion}"
-    compile 'com.google.code.gson:gson:2.6.2'
+    compile('com.yayandroid:LocationManager:1.1.5') {
+        exclude group: 'com.google.android.gms'
+    }
+    compile "com.google.firebase:firebase-core:${firebaseVersion}"
+    compile "com.google.firebase:firebase-messaging:${firebaseVersion}"
+    compile "com.google.firebase:firebase-crash:${firebaseVersion}"
+    compile 'com.android.support:animated-vector-drawable:25.2.0'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.google.code.ksoap2-android:ksoap2-android:3.4.0'
     compile 'com.hkm:hkmprocessbuttons:1.2.4'
     compile 'cn.pedant.sweetalert:library:1.3'
-    compile 'com.yayandroid:LocationManager:1.1.1'
     compile 'com.github.gcacace:signature-pad:1.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'me.leolin:ShortcutBadger:1.1.16@aar'
+    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+    compile 'com.google.android.gms:play-services-location:10.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
+    testCompile 'junit:junit:4.12'
 }
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,6 +1,7 @@
 package mibh.mis.tmsland.manager;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mibh.mis.tmsland.dao.FuelDao;
+import mibh.mis.tmsland.dao.NewsDao;
 import mibh.mis.tmsland.dao.PlanDao;
 import mibh.mis.tmsland.dao.WorkDao;
 
@@ -24,6 +26,7 @@ public class DataManager {
     private List<WorkDao> workList;
     private List<PlanDao> planList;
     private List<FuelDao> fuelList;
+    private List<NewsDao> newsList;
 
     public static DataManager getInstance() {
         if (instance == null)
@@ -144,6 +147,26 @@ public class DataManager {
         this.fuelList = new Gson().fromJson(jsonFuel, listType);
     }
 
+    public List<NewsDao> getNewsList() {
+        return newsList;
+    }
+
+    public void setNewsList(String jsonNews) {
+        Type listType = new TypeToken<List<NewsDao>>() {
+        }.getType();
+        this.newsList = new Gson().fromJson(jsonNews, listType);
+    }
+
+    public void addFuelList(String docId, String fuelId, String typeFuel) {
+        FuelDao fuelDao = new FuelDao();
+        fuelDao.setWorkId(docId);
+        fuelDao.setFuelId(fuelId);
+        fuelDao.setType(typeFuel);
+        if (fuelList == null)
+            fuelList = new ArrayList<>();
+        fuelList.add(fuelDao);
+    }
+
     public void clearWorkList() {
         this.workList.clear();
     }
@@ -155,7 +178,6 @@ public class DataManager {
     public void clearFuelList() {
         this.fuelList.clear();
     }
-
 
 
 }

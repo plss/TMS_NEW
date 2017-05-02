@@ -21,7 +21,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import mibh.mis.tmsland.manager.PreferencesManage;
+import mibh.mis.tmsland.manager.PrefManage;
 
 /**
  * Created by Ponlakit on 7/14/2016.
@@ -55,9 +55,9 @@ public class GetLocationName extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        PreferencesManage.getInstance().setLatitude(lat);
-        PreferencesManage.getInstance().setLongtitude(lng);
-        PreferencesManage.getInstance().setLocationName(s);
+        PrefManage.getInstance().setLatitude(lat);
+        PrefManage.getInstance().setLongitude(lng);
+        PrefManage.getInstance().setLocationName(s);
     }
 
     private static ArrayList<String> getFromLocation(double lat, double lng, int maxResult) throws Exception {

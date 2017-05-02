@@ -1,11 +1,17 @@
 package mibh.mis.tmsland.adapter;
 
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.io.File;
+import java.util.List;
+
+import mibh.mis.tmsland.realm.ImageTms;
 import mibh.mis.tmsland.view.ImgGalleryItem;
 
 /**
@@ -16,9 +22,11 @@ public class ImageGalleryAdapter extends BaseAdapter {
 
     private OnCbCheckedListener onCbCheckedListener;
     private SparseBooleanArray mCheckStates;
+    private List<ImageTms> imageList;
 
-    public ImageGalleryAdapter(SparseBooleanArray mCheckStates) {
+    public ImageGalleryAdapter(List<ImageTms> imageList, SparseBooleanArray mCheckStates) {
         this.mCheckStates = mCheckStates;
+        this.imageList = imageList;
     }
 
     public interface OnCbCheckedListener {
@@ -31,7 +39,7 @@ public class ImageGalleryAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 100;
+        return imageList == null ? 0 : imageList.size();
     }
 
     @Override
@@ -45,14 +53,17 @@ public class ImageGalleryAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, final ViewGroup viewGroup) {
         final ImgGalleryItem item;
         if (view != null)
             item = (ImgGalleryItem) view;
         else
             item = new ImgGalleryItem(viewGroup.getContext());
 
-        item.setUrlImageView(Uri.parse("http://vignette1.wikia.nocookie.net/the-phijkchu-cult/images/0/0b/Snorlax.png/revision/latest?cb=20141029031048"));
+        final File imagesFolder = new File(Environment.getExternalStorageDirectory(), "DCIM/TMS");
+        File output = new File(imagesFolder, imageList.get(i).getFileName());
+        final Uri uri = Uri.fromFile(output);
+        item.setUrlImageView(uri);
 
         if (mCheckStates.get(i, false)) {
             item.setCheckBox(true);
@@ -71,8 +82,18 @@ public class ImageGalleryAdapter extends BaseAdapter {
                 onCbCheckedListener.cbChecked(mCheckStates);
             }
         };
-
         item.setOnClickCheckBox(onCheckboxClick);
+
+        View.OnClickListener onImageClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, "image/*");
+                viewGroup.getContext().startActivity(intent);
+            }
+        };
+        item.setOnClickImageView(onImageClick);
 
         return item;
     }

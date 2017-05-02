@@ -1,5 +1,6 @@
 package mibh.mis.tmsland.adapter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Camera;
 import android.util.SparseBooleanArray;
@@ -15,6 +16,7 @@ import mibh.mis.tmsland.activity.SignaturePadActivity;
 import mibh.mis.tmsland.dao.DataParams;
 import mibh.mis.tmsland.fragment.ImageGalleryFragment;
 import mibh.mis.tmsland.fragment.SignaturePadFragment;
+import mibh.mis.tmsland.manager.Contextor;
 import mibh.mis.tmsland.view.ImgTypeListItem;
 
 /**
@@ -58,7 +60,7 @@ public class ImgTypeAdapter extends BaseAdapter {
             item = new ImgTypeListItem(viewGroup.getContext());
 
         item.setStateIcon(checkState.get(i, false));
-        item.setTextBtn((i + 1) + " " + arrImageType[i]);
+        item.setTextBtn((i + 1) + ". " + arrImageType[i]);
         View.OnClickListener onBtnClick = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +72,8 @@ public class ImgTypeAdapter extends BaseAdapter {
                 dataHolder.setMode(arrImageType[i]);
                 dataHolder.setTypeImg(getImgTypeFromPosition(dataHolder.getType(), i));
                 intent.putExtra("DataParams", dataHolder);
-                viewGroup.getContext().startActivity(intent);
+                //viewGroup.getContext().startActivity(intent);
+                ((Activity) viewGroup.getContext()).startActivityForResult(intent, i);
             }
         };
         item.setOnClickBtn(onBtnClick);
@@ -78,11 +81,7 @@ public class ImgTypeAdapter extends BaseAdapter {
         View.OnClickListener onMoreClick = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent;
-                if (!dataHolder.getType().equals("SIGNATURE"))
-                    intent = new Intent(viewGroup.getContext(), ImageGalleryActivity.class);
-                else
-                    intent = new Intent(viewGroup.getContext(), ImageGalleryActivity.class);
+                Intent intent = new Intent(viewGroup.getContext(), ImageGalleryActivity.class);
                 dataHolder.setMode(arrImageType[i]);
                 dataHolder.setTypeImg(getImgTypeFromPosition(dataHolder.getType(), i));
                 intent.putExtra("DataParams", dataHolder);
@@ -123,9 +122,18 @@ public class ImgTypeAdapter extends BaseAdapter {
                 if (position == arrImageType.length - 1) imgType = "129";
                 else imgType = String.valueOf(120 + position);
                 break;
+            case "MTNTAIL":
+                if (position == arrImageType.length - 1) imgType = "139";
+                else imgType = String.valueOf(130 + position);
+                break;
+            case "CLOSEWORK":
+                if (position == arrImageType.length - 1) imgType = "149";
+                else imgType = String.valueOf(140 + position);
+                break;
             default:
                 imgType = "";
         }
+
         return imgType;
     }
 

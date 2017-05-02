@@ -1,12 +1,15 @@
 package mibh.mis.tmsland.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,11 +22,17 @@ import mibh.mis.tmsland.adapter.ImgTypeAdapter;
 import mibh.mis.tmsland.dao.DataParams;
 import mibh.mis.tmsland.manager.RealmManager;
 import mibh.mis.tmsland.realm.ImageTms;
+import mibh.mis.tmsland.utils.MyDebug;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 
 public class ImageTypeFragment extends Fragment {
 
     private ListView listView;
-    private ListAdapter listAdapter;
+    private ImgTypeAdapter listAdapter;
+    private SparseBooleanArray checkStates;
+    private int RESULT = RESULT_CANCELED;
 
     public ImageTypeFragment() {
         super();
@@ -52,16 +61,19 @@ public class ImageTypeFragment extends Fragment {
          *  fuel : 30-93
          *  mtntruck :  100-109
          *  mtndriver : 102,110-119
-         *  reqwork : 50
+         *  signature : 50
          *  reqwork : 120-129
+         *  mtntail : 130-139
+         *  closework : 140-149
          */
 
         DataParams dataHolder = getActivity().getIntent().getParcelableExtra("DataParams");
         String[] arrImageType = getArrayImageType(dataHolder.getType());
-        SparseBooleanArray checkStates = new SparseBooleanArray(arrImageType.length);
+        checkStates = new SparseBooleanArray(arrImageType.length);
         List<ImageTms> list = RealmManager.getInstance().getImageByGroupTypeAndWorkIdAndItem(dataHolder.getType(), dataHolder.getDocId(), dataHolder.getItemId());
         for (int i = 0; i < list.size(); i++) {
-            checkStates.put(getCheckStateIndex(arrImageType.length - 1, dataHolder.getType(), dataHolder.getTypeImg()), true);
+            if (!list.get(i).getTypeImg().equals(""))
+                checkStates.put(getCheckStateIndex(arrImageType.length - 1, list.get(i).getGroupType(), list.get(i).getTypeImg()), true);
         }
         listAdapter = new ImgTypeAdapter(dataHolder, arrImageType, checkStates);
         listView.setAdapter(listAdapter);
@@ -77,23 +89,15 @@ public class ImageTypeFragment extends Fragment {
         super.onStop();
     }
 
-    /*
-     * Save Instance State Here
-     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // Save Instance State here
     }
 
-    /*
-     * Restore Instance State Here
-     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            // Restore Instance State here
         }
     }
 
@@ -117,8 +121,14 @@ public class ImageTypeFragment extends Fragment {
             case "MTNDRIVER":
                 arrImageType = getResources().getStringArray(R.array.mtndriver_image_type);
                 break;
+            case "MTNTAIL":
+                arrImageType = getResources().getStringArray(R.array.mtntail_image_type);
+                break;
             case "REQWORK":
                 arrImageType = getResources().getStringArray(R.array.reqwork_image_type);
+                break;
+            case "CLOSEWORK":
+                arrImageType = getResources().getStringArray(R.array.closework_image_type);
                 break;
             default:
                 arrImageType = new String[0];
@@ -146,6 +156,10 @@ public class ImageTypeFragment extends Fragment {
                 if (x == 109) index = lastIndex;
                 else index = x - 100;
                 break;
+            case "MTNTAIL":
+                if (x == 139) index = lastIndex;
+                else index = x - 130;
+                break;
             case "MTNDRIVER":
                 if (x == 102) index = 0;
                 else if (x == 119) index = lastIndex;
@@ -155,10 +169,26 @@ public class ImageTypeFragment extends Fragment {
                 if (x == 129) index = lastIndex;
                 else index = x - 120;
                 break;
+            case "CLOSEWORK":
+                if (x == 149) index = lastIndex;
+                else index = x - 140;
+                break;
             default:
                 index = 0;
         }
         return index;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            checkStates.put(requestCode, true);
+            listAdapter.notifyDataSetChanged();
+            RESULT = RESULT_OK;
+            Intent intent = new Intent();
+            getActivity().setResult(RESULT, intent);
+        }
     }
 
 }

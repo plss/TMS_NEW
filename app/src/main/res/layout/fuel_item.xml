@@ -7,7 +7,9 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
     card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="@dimen/cardview_default_elevation">
+    card_view:cardElevation="@dimen/cardview_default_elevation"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +39,8 @@
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
             android:text="test"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:textSize="@dimen/text_size_medium_btn" />
 
         <View
             android:layout_width="1px"
